@@ -142,6 +142,28 @@ Four exact loop files live in `assets/`. **Use these as-is — do not regenerate
 | [`assets/loop-wide-double.svg`](assets/loop-wide-double.svg) | 1920 × 909 | Wide figure-8 / double-loop | Large hero moments needing more visual weight and complexity |
 | [`assets/loop-tall-vertical.svg`](assets/loop-tall-vertical.svg) | 1025 × 1024 | Vertical double-curve | Portrait layouts, mobile content, tall hero sections |
 
+### Loop Mask assets
+
+Two PNG mask files provide a distinct usage mode: **Loop as Mask**. In this mode the loop shape itself crops and reveals the photo from within it, rather than sitting on top as a graphic element. Navy fills the surrounding area; the loop openings are transparent so the photo behind shows through. The loop ribbon carries the `#4C4DC3` → `#01FFB7` gradient stroke.
+
+| File | Dimensions | Shape | Best for |
+|------|-----------|-------|----------|
+| [`assets/loopmask.png`](assets/loopmask.png) | 1920 × 1080 | Single large organic teardrop loop, right side | Wide layouts where a clean, elegant single-loop photo reveal is preferred |
+| [`assets/sloopmask.png`](assets/sloopmask.png) | 1920 × 1080 | Figure-8 / double-loop, right side | Wide landscape layouts where stronger brand presence and more visual complexity are needed |
+
+**How to use — layer order, bottom to top:**
+
+1. Photograph
+2. Mask PNG (`loopmask.png` or `sloopmask.png`)
+3. Text
+
+Place the photo behind the mask file. The navy surround is built into the PNG — the left area is available for text. Position and scale the photo so the subject is centered in the loop opening(s).
+
+**Choosing between the two:**
+
+- `loopmask.png` — simpler, more elegant. Use when one subject or a clean architectural frame is the focal point.
+- `sloopmask.png` — more visual weight, two reveal windows. Use when the hero needs stronger brand presence or when two distinct photo moments can show through each loop.
+
 **Selecting a variant** — match the loop's aspect ratio to the available composition space:
 
 - Wide horizontal strip → `loop-wide-banner` or `loop-wide-curve`

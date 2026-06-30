@@ -218,6 +218,36 @@ Icons follow the same continuous-line spirit as the Loop — each icon is a sing
 
 ---
 
+## UI Elements
+
+### Inputs
+
+All inputs use an **underline style only** — no full border box on any input type, on any background. The underline is the sole border treatment.
+
+#### States
+
+| State | Label / text | Underline | Notes |
+|-------|-------------|-----------|-------|
+| Inactive | Placeholder, neutral gray | Neutral gray | Default resting state |
+| Active | User text, full color | Brand accent / Blue 400 `#4C4DC3` | Focused; underline switches to accent |
+| Complete | User text, full color | Neutral (muted) | Value entered, not focused |
+| Disabled | Muted, grayed out | Muted | Non-interactive; reduced opacity |
+| Error | Red label + user text | Red `#DC2626` | Error message displays below the field |
+
+State logic is identical on light and dark backgrounds. On dark navy, text and underlines invert — white or light-toned values replace the dark equivalents — but the same five states apply in the same order.
+
+#### Input types
+
+**Text field** — single-line, underline only. Placeholder in neutral gray; typed text in primary color for the background.
+
+**Dropdown** — underline style with a chevron indicator on the right. Chevron rotates on open. Behaves as a text field in Inactive/Active/Disabled/Error states.
+
+**Icon-prefixed input** — leading icon left of the text field, vertically centered. Icon inherits the field's state color (muted when inactive, accent when active, red when error). Underline spans the full field width including the icon zone.
+
+**Multi-line text area** — same underline treatment, expands vertically. No box border. Resize handle (if present) should be unobtrusive.
+
+---
+
 ## Logo
 
 ### Lockups

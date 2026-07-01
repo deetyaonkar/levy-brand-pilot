@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=1920">
+<title>Leasing Slide — Levy Legacy Group.</title>
+<style>
+  :root {
+    --navy:     #01133D;
+    --navy-mid: #091A4A;
+    --green:    #01FFB7;
+    --blue:     #4C4DC3;
+    --blue-lt:  #97B9FF;
+    --white:    #FFFFFF;
+    --cream:    #F9F7F3;
+    --serif: Palatino Linotype, Palatino, Book Antiqua, Georgia, serif;
+    --sans:  -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html {
+    width: 1920px;
+    height: 1080px;
+    overflow: hidden;
+  }
+
+  body {
+    width: 1920px;
+    height: 1080px;
+    min-width: 1920px;
+    min-height: 1080px;
+    max-width: 1920px;
+    max-height: 1080px;
+    overflow: hidden;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background: var(--navy);
+    font-family: var(--sans);
+    -webkit-font-smoothing: antialiased;
+    color: var(--white);
+  }
+
+  .slide {
+    width: 1920px;
+    height: 1080px;
+    display: grid;
+    grid-template-columns: 900px 1fr;
+    overflow: hidden;
+  }
+
+  /* ── LEFT: PHOTO ── */
+  .slide-photo {
+    width: 900px;
+    height: 1080px;
+    background: var(--navy-mid);
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 18px;
+    flex-shrink: 0;
+  }
+  .slide-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    position: absolute;
+    inset: 0;
+  }
+  .photo-placeholder-icon {
+    width: 64px; height: 64px;
+    border: 1px solid rgba(76,77,195,0.3);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .photo-placeholder-label {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.15);
+  }
+  /* Gradient bleed from photo into right panel */
+  .slide-photo::after {
+    content: '';
+    position: absolute;
+    top: 0; right: 0; bottom: 0;
+    width: 120px;
+    background: linear-gradient(to right, transparent, var(--navy));
+    pointer-events: none;
+  }
+
+  /* ── RIGHT: CONTENT ── */
+  .slide-content {
+    height: 1080px;
+    background: var(--navy);
+    display: flex;
+    flex-direction: column;
+    padding: 72px 80px 60px 60px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* Loop decorative — navy only, behind content */
+  .loop-decor {
+    position: absolute;
+    bottom: -80px;
+    right: -200px;
+    width: 900px;
+    pointer-events: none;
+    opacity: 0.1;
+  }
+  .loop-decor svg { width: 100%; height: auto; }
+
+  /* LOGO */
+  .slide-logo {
+    font-family: var(--serif);
+    font-size: 18px;
+    line-height: 1;
+    margin-bottom: auto;
+  }
+  .logo-levy { color: var(--green); }
+  .logo-rest { color: var(--white); }
+
+  /* KICKER */
+  .slide-kicker {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: var(--green);
+    margin-bottom: 24px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    position: relative;
+    z-index: 1;
+  }
+  .slide-kicker::before {
+    content: '';
+    display: inline-block;
+    width: 32px;
+    height: 1.5px;
+    background: var(--green);
+  }
+
+  /* ADDRESS */
+  .slide-address {
+    font-family: var(--serif);
+    font-size: 96px;
+    line-height: 0.92;
+    letter-spacing: -0.03em;
+    color: var(--white);
+    margin-bottom: 12px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .slide-city {
+    font-size: 16px;
+    color: var(--blue-lt);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    margin-bottom: 52px;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* STATS */
+  .slide-stats {
+    display: grid;
+    grid-template-columns: repeat(4, auto);
+    gap: 0;
+    margin-bottom: 56px;
+    position: relative;
+    z-index: 1;
+    width: fit-content;
+  }
+  .slide-stat {
+    padding-right: 36px;
+    margin-right: 36px;
+    border-right: 1px solid rgba(76,77,195,0.3);
+  }
+  .slide-stat:last-child {
+    border-right: none;
+    margin-right: 0;
+    padding-right: 0;
+  }
+  .slide-stat-value {
+    font-family: var(--serif);
+    font-size: 48px;
+    line-height: 1;
+    color: var(--white);
+    font-variant-numeric: tabular-nums;
+    margin-bottom: 6px;
+  }
+  .slide-stat-label {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--blue-lt);
+  }
+
+  /* PRICE */
+  .slide-price-row {
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+    margin-bottom: 52px;
+    position: relative;
+    z-index: 1;
+  }
+  .slide-price {
+    font-family: var(--serif);
+    font-size: 56px;
+    color: var(--green);
+    line-height: 1;
+    font-variant-numeric: tabular-nums;
+  }
+  .slide-price em {
+    font-style: normal;
+    font-size: 24px;
+    color: var(--green);
+    vertical-align: super;
+    font-family: var(--sans);
+  }
+  .slide-price-label {
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.4);
+  }
+
+  /* DIVIDER */
+  .slide-divider {
+    width: 100%;
+    height: 1px;
+    background: rgba(76,77,195,0.25);
+    margin-bottom: 36px;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* CONTACT ROW */
+  .slide-contact {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+    z-index: 1;
+  }
+  .contact-person {}
+  .contact-name-label {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--blue-lt);
+    margin-bottom: 4px;
+  }
+  .contact-name {
+    font-family: var(--serif);
+    font-size: 24px;
+    color: var(--white);
+    line-height: 1;
+  }
+  .contact-items {
+    display: flex;
+    gap: 40px;
+  }
+  .contact-item {}
+  .contact-item-label {
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--blue-lt);
+    margin-bottom: 4px;
+  }
+  .contact-item-value {
+    font-size: 15px;
+    color: var(--white);
+  }
+
+  /* AVAIL BADGE */
+  .avail-badge {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--green);
+    padding: 10px 20px;
+    border: 1px solid rgba(1,255,183,0.3);
+  }
+  .avail-badge-dot {
+    width: 7px; height: 7px;
+    border-radius: 50%;
+    background: var(--green);
+  }
+</style>
+</head>
+<body>
+<div class="slide">
+
+  <!-- LEFT: PHOTO -->
+  <div class="slide-photo">
+    <!-- Replace with: <img src="path/to/photo.jpg" alt="Property exterior" /> -->
+    <div class="photo-placeholder-icon">
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none">
+        <rect x="3" y="5" width="18" height="14" rx="1" stroke="rgba(255,255,255,0.2)" stroke-width="1.5"/>
+        <circle cx="8.5" cy="10.5" r="1.5" stroke="rgba(255,255,255,0.2)" stroke-width="1.5"/>
+        <path d="M3 16l5-4 4 3 3-2.5 6 5.5" stroke="rgba(255,255,255,0.2)" stroke-width="1.5" stroke-linejoin="round"/>
+      </svg>
+    </div>
+    <p class="photo-placeholder-label">Property Photo</p>
+  </div>
+
+  <!-- RIGHT: CONTENT -->
+  <div class="slide-content">
+
+    <!-- Loop decorative (navy only) -->
+    <div class="loop-decor" aria-hidden="true">
+      <svg width="1920" height="990" viewBox="0 0 1920 990" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M0 670.493C63.4631 703.891 131.349 728.508 202.136 739.791C444.637 782.142 673.484 639.649 840.007 474.842C908.792 407.756 966.18 328.544 1004.59 239.837C1023.15 195.554 1038.16 148.402 1037.26 98.5258C1036.49 74.0599 1030.87 47.5424 1013.22 27.6209C995.561 7.35797 968.18 -0.164918 943.163 0.00650259C895.859 -0.381189 845.504 16.0588 813.905 54.1714C781.697 91.9899 775.839 145.532 785.972 191.454C807.576 285.495 870.922 359.454 937.684 423.558C958.824 443.505 977.638 465.488 993.739 489.322C1050.79 572.974 1070.92 679.715 1051.74 779.073C1034.53 872.519 969.397 991.965 865.924 972.612C829.288 965.622 802.096 936.495 800.499 899.53C797.755 863.436 809.734 825.746 824.709 791.697C855.785 722.837 902.718 660.799 954.278 605.199C1058.7 494.192 1187.63 404.109 1332.27 354.436C1455.15 312.865 1579.98 277.953 1707.55 253.951C1777.72 241.279 1848.53 229.848 1920 230.572C1920 230.572 1920 230.572 1920 230.572C1848.52 228.779 1777.45 239.213 1707.01 250.959C1578.94 273.28 1453.43 306.745 1329.82 347.091C1183.12 395.734 1052.12 485.459 945.575 597.02C892.938 652.971 844.888 715.388 812.398 786.185C796.795 821.321 783.686 860.269 786.422 900.679C787.126 942.169 822.066 979.894 862.588 986.894C983.192 1007.56 1048.45 878.141 1067.12 782.043C1087.29 678.806 1066.51 567.638 1007 480.364C990.216 455.523 970.613 432.642 948.643 411.938C882.94 349.149 821.443 276.338 801.176 188.256C774.252 98.9697 850.813 7.93032 943.163 14.5736C990.896 10.7934 1024.79 52.3897 1023.41 98.9859C1024.58 145.254 1010.51 191.481 992.618 234.774C955.642 321.75 899.635 400.421 832.413 467.07C668.033 632.271 444.157 775.439 202.595 736.786C132.041 726.512 63.9543 702.947 0 670.493Z" fill="url(#paint0_linear_933_4824)"/>
+<defs>
+<linearGradient id="paint0_linear_933_4824" x1="403.993" y1="657.657" x2="1821.33" y2="165.406" gradientUnits="userSpaceOnUse">
+<stop stop-color="#4C4DC3"/>
+<stop offset="1" stop-color="#01FFB7"/>
+</linearGradient>
+</defs>
+</svg>
+
+    </div>
+
+    <!-- Logo -->
+    <p class="slide-logo"><span class="logo-levy">Levy</span><span class="logo-rest"> Legacy Group.</span></p>
+
+    <!-- Kicker -->
+    <p class="slide-kicker">Now Leasing</p>
+
+    <!-- Address -->
+    <h1 class="slide-address">123<br>Main<br>Street</h1>
+    <p class="slide-city">Brooklyn, New York &nbsp;·&nbsp; 11201</p>
+
+    <!-- Stats -->
+    <div class="slide-stats">
+      <div class="slide-stat">
+        <p class="slide-stat-value">4</p>
+        <p class="slide-stat-label">Bedrooms</p>
+      </div>
+      <div class="slide-stat">
+        <p class="slide-stat-value">2.5</p>
+        <p class="slide-stat-label">Bathrooms</p>
+      </div>
+      <div class="slide-stat">
+        <p class="slide-stat-value">2,400</p>
+        <p class="slide-stat-label">Sq Ft</p>
+      </div>
+      <div class="slide-stat">
+        <p class="slide-stat-value">1931</p>
+        <p class="slide-stat-label">Year Built</p>
+      </div>
+    </div>
+
+    <!-- Price -->
+    <div class="slide-price-row">
+      <p class="slide-price"><em>$</em>5,500</p>
+      <p class="slide-price-label">Per Month</p>
+      <div class="avail-badge" style="margin-left:24px;">
+        <div class="avail-badge-dot"></div>
+        Available Aug 1, 2026
+      </div>
+    </div>
+
+    <div class="slide-divider"></div>
+
+    <!-- Contact -->
+    <div class="slide-contact">
+      <div class="contact-person">
+        <p class="contact-name-label">Leasing Contact</p>
+        <p class="contact-name">Sarah Levy</p>
+      </div>
+      <div class="contact-items">
+        <div class="contact-item">
+          <p class="contact-item-label">Phone</p>
+          <p class="contact-item-value">(212) 555-0148</p>
+        </div>
+        <div class="contact-item">
+          <p class="contact-item-label">Email</p>
+          <p class="contact-item-value">leasing@levylegacygroup.com</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+</body>
+</html>

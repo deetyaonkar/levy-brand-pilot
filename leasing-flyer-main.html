@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=816">
+<title>Leasing Flyer — Levy Legacy Group.</title>
+<style>
+  @page {
+    size: 8.5in 11in;
+    margin: 0;
+  }
+
+  :root {
+    --navy:      #01133D;
+    --navy-mid:  #091A4A;
+    --green:     #01FFB7;
+    --blue:      #4C4DC3;
+    --blue-lt:   #97B9FF;
+    --white:     #FFFFFF;
+    --cream:     #F9F7F3;
+    --serif: Palatino Linotype, Palatino, Book Antiqua, Georgia, serif;
+    --sans:  -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html {
+    width: 816px;
+    height: 1056px;
+    overflow: hidden;
+    font-size: 16px;
+  }
+
+  body {
+    width: 816px;
+    height: 1056px;
+    min-width: 816px;
+    min-height: 1056px;
+    max-width: 816px;
+    max-height: 1056px;
+    overflow: hidden;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background: var(--navy);
+    font-family: var(--sans);
+    -webkit-font-smoothing: antialiased;
+    color: var(--white);
+  }
+
+  @media print {
+    html {
+      width: 8.5in;
+      height: 11in;
+    }
+    body {
+      width: 8.5in;
+      height: 11in;
+      min-width: 8.5in;
+      min-height: 11in;
+      max-width: 8.5in;
+      max-height: 11in;
+      position: fixed;
+      top: 0;
+      left: 0;
+    }
+    .page {
+      width: 8.5in;
+      height: 11in;
+    }
+  }
+
+  .page {
+    width: 816px;
+    height: 1056px;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+
+  /* ── HEADER ── 48px */
+  .header {
+    height: 48px;
+    flex-shrink: 0;
+    padding: 0 32px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1.5px solid var(--green);
+  }
+  .logo { font-family: var(--serif); font-size: 15px; line-height: 1; }
+  .logo-levy { color: var(--green); }
+  .logo-rest { color: var(--white); }
+  .header-kicker {
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--green);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .header-kicker::before {
+    content: '';
+    display: inline-block;
+    width: 16px;
+    height: 1px;
+    background: var(--green);
+  }
+
+  /* ── PHOTO ── 362px */
+  .photo {
+    height: 362px;
+    flex-shrink: 0;
+    background: var(--navy-mid);
+    border-bottom: 1px solid rgba(76,77,195,0.25);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    position: relative;
+    overflow: hidden;
+  }
+  .photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  .photo-placeholder-icon {
+    width: 44px; height: 44px;
+    border: 1px solid rgba(76,77,195,0.35);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .photo-placeholder-label {
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.18);
+  }
+
+  /* ── ADDRESS BAR ── 88px */
+  .address-bar {
+    height: 88px;
+    flex-shrink: 0;
+    padding: 0 32px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid rgba(76,77,195,0.2);
+    gap: 24px;
+  }
+  .address-left {}
+  .address {
+    font-family: var(--serif);
+    font-size: 36px;
+    line-height: 1;
+    letter-spacing: -0.025em;
+    color: var(--white);
+  }
+  .city {
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--blue-lt);
+    margin-top: 5px;
+  }
+  .price-block { text-align: right; flex-shrink: 0; }
+  .price {
+    font-family: var(--serif);
+    font-size: 30px;
+    color: var(--white);
+    line-height: 1;
+    font-variant-numeric: tabular-nums;
+  }
+  .price em {
+    font-style: normal;
+    font-size: 14px;
+    color: var(--green);
+    vertical-align: super;
+    font-family: var(--sans);
+  }
+  .price-label {
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--blue-lt);
+    margin-top: 4px;
+  }
+
+  /* ── STATS ── 64px */
+  .stats {
+    height: 64px;
+    flex-shrink: 0;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    border-bottom: 1px solid rgba(76,77,195,0.2);
+  }
+  .stat {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 0 24px;
+    border-right: 1px solid rgba(76,77,195,0.15);
+  }
+  .stat:last-child { border-right: none; }
+  .stat-value {
+    font-family: var(--serif);
+    font-size: 22px;
+    color: var(--white);
+    line-height: 1;
+    font-variant-numeric: tabular-nums;
+    flex-shrink: 0;
+  }
+  .stat-label {
+    font-size: 8.5px;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--blue-lt);
+    line-height: 1.3;
+  }
+
+  /* ── BODY ── flex-grow */
+  .body {
+    flex: 1;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    border-bottom: 1px solid rgba(76,77,195,0.2);
+    min-height: 0;
+  }
+  .body-col {
+    padding: 20px 28px;
+    overflow: hidden;
+  }
+  .body-col:first-child {
+    border-right: 1px solid rgba(76,77,195,0.15);
+  }
+  .col-kicker {
+    font-size: 8px;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--green);
+    margin-bottom: 10px;
+  }
+  .col-title {
+    font-family: var(--serif);
+    font-size: 16px;
+    line-height: 1.15;
+    letter-spacing: -0.01em;
+    color: var(--white);
+    margin-bottom: 12px;
+  }
+  .col-body {
+    font-size: 11px;
+    line-height: 1.7;
+    color: rgba(255,255,255,0.6);
+  }
+  .col-body + .col-body { margin-top: 8px; }
+
+  .features-list { list-style: none; margin-top: 4px; }
+  .feature {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 5px 0;
+    border-bottom: 1px solid rgba(76,77,195,0.1);
+    font-size: 10.5px;
+    color: rgba(255,255,255,0.68);
+    line-height: 1.3;
+  }
+  .feature-dot {
+    width: 3px; height: 3px;
+    border-radius: 50%;
+    background: var(--green);
+    flex-shrink: 0;
+  }
+
+  /* ── AVAILABILITY ── 64px */
+  .availability {
+    height: 64px;
+    flex-shrink: 0;
+    padding: 0 32px;
+    display: flex;
+    align-items: center;
+    gap: 32px;
+    background: var(--navy-mid);
+    border-bottom: 1px solid rgba(76,77,195,0.2);
+  }
+  .avail-item { display: flex; flex-direction: column; gap: 3px; }
+  .avail-label {
+    font-size: 8px;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--blue-lt);
+  }
+  .avail-value {
+    font-family: var(--serif);
+    font-size: 14px;
+    color: var(--white);
+  }
+  .avail-divider {
+    width: 1px; height: 30px;
+    background: rgba(76,77,195,0.3);
+    flex-shrink: 0;
+  }
+  .avail-status {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--green);
+  }
+  .avail-dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--green);
+  }
+
+  /* ── CONTACT ── 88px */
+  .contact {
+    height: 88px;
+    flex-shrink: 0;
+    padding: 0 32px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: var(--cream);
+    border-bottom: 1px solid rgba(0,0,0,0.06);
+  }
+  .contact-left .contact-kicker {
+    font-size: 8px;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--blue);
+    margin-bottom: 6px;
+  }
+  .contact-name {
+    font-family: var(--serif);
+    font-size: 20px;
+    color: var(--navy);
+    line-height: 1;
+    letter-spacing: -0.01em;
+  }
+  .contact-title-text {
+    font-size: 10px;
+    color: rgba(1,19,61,0.5);
+    margin-top: 3px;
+  }
+  .contact-details {
+    display: flex;
+    gap: 32px;
+  }
+  .contact-detail { text-align: right; }
+  .detail-label {
+    font-size: 8px;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--blue);
+    margin-bottom: 3px;
+  }
+  .detail-value {
+    font-size: 11px;
+    color: var(--navy);
+    line-height: 1.4;
+  }
+
+  /* ── FOOTER ── remaining */
+  .footer {
+    flex: 1;
+    min-height: 36px;
+    padding: 0 32px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: var(--navy);
+    border-top: 1px solid rgba(76,77,195,0.2);
+  }
+  .footer-note {
+    font-size: 8px;
+    color: rgba(255,255,255,0.28);
+    letter-spacing: 0.05em;
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- HEADER -->
+  <header class="header">
+    <p class="logo"><span class="logo-levy">Levy</span><span class="logo-rest"> Legacy Group.</span></p>
+    <p class="header-kicker">Now Leasing</p>
+  </header>
+
+  <!-- PHOTO -->
+  <div class="photo">
+    <!-- Replace with: <img src="path/to/photo.jpg" alt="Property exterior" /> -->
+    <div class="photo-placeholder-icon">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+        <rect x="3" y="5" width="18" height="14" rx="1" stroke="rgba(255,255,255,0.25)" stroke-width="1.5"/>
+        <circle cx="8.5" cy="10.5" r="1.5" stroke="rgba(255,255,255,0.25)" stroke-width="1.5"/>
+        <path d="M3 16l5-4 4 3 3-2.5 6 5.5" stroke="rgba(255,255,255,0.25)" stroke-width="1.5" stroke-linejoin="round"/>
+      </svg>
+    </div>
+    <p class="photo-placeholder-label">Property Photo</p>
+  </div>
+
+  <!-- ADDRESS BAR -->
+  <div class="address-bar">
+    <div class="address-left">
+      <p class="address">123 Main Street</p>
+      <p class="city">Brooklyn, New York 11201</p>
+    </div>
+    <div class="price-block">
+      <p class="price"><em>$</em>5,500</p>
+      <p class="price-label">Per Month</p>
+    </div>
+  </div>
+
+  <!-- STATS -->
+  <div class="stats">
+    <div class="stat">
+      <p class="stat-value">4</p>
+      <p class="stat-label">Bed&shy;rooms</p>
+    </div>
+    <div class="stat">
+      <p class="stat-value">2.5</p>
+      <p class="stat-label">Bath&shy;rooms</p>
+    </div>
+    <div class="stat">
+      <p class="stat-value">2,400</p>
+      <p class="stat-label">Square Feet</p>
+    </div>
+    <div class="stat">
+      <p class="stat-value">1931</p>
+      <p class="stat-label">Year Built</p>
+    </div>
+  </div>
+
+  <!-- BODY -->
+  <div class="body">
+    <div class="body-col">
+      <p class="col-kicker">The Property</p>
+      <h2 class="col-title">A Dutch Colonial with remarkable character</h2>
+      <p class="col-body">Set on a quiet, tree-lined block, this beautifully maintained Dutch Colonial offers the rare combination of historic charm and thoughtful modern updates. The gambrel roofline, original hardwood floors, and classic divided-light windows define a home that has been cared for with genuine attention.</p>
+      <p class="col-body">The rear garden — lush, private, and in full bloom from spring through fall — extends the living space outdoors. A brick walkway, mature plantings, and a south-facing exposure make this one of the most inviting properties available this season.</p>
+    </div>
+    <div class="body-col">
+      <p class="col-kicker">What's Included</p>
+      <h2 class="col-title">Property details</h2>
+      <ul class="features-list">
+        <li class="feature"><span class="feature-dot"></span>Hardwood floors throughout</li>
+        <li class="feature"><span class="feature-dot"></span>Private rear garden</li>
+        <li class="feature"><span class="feature-dot"></span>Updated kitchen</li>
+        <li class="feature"><span class="feature-dot"></span>In-unit laundry</li>
+        <li class="feature"><span class="feature-dot"></span>Central air + heat</li>
+        <li class="feature"><span class="feature-dot"></span>Attached garage</li>
+        <li class="feature"><span class="feature-dot"></span>Mudroom entry</li>
+        <li class="feature"><span class="feature-dot"></span>Basement storage</li>
+        <li class="feature"><span class="feature-dot"></span>Front porch</li>
+        <li class="feature"><span class="feature-dot"></span>Natural light, all rooms</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- AVAILABILITY -->
+  <div class="availability">
+    <div class="avail-item">
+      <p class="avail-label">Available From</p>
+      <p class="avail-value">August 1, 2026</p>
+    </div>
+    <div class="avail-divider"></div>
+    <div class="avail-item">
+      <p class="avail-label">Lease Term</p>
+      <p class="avail-value">12–24 Months</p>
+    </div>
+    <div class="avail-divider"></div>
+    <div class="avail-item">
+      <p class="avail-label">Pets</p>
+      <p class="avail-value">Case by Case</p>
+    </div>
+    <div class="avail-status">
+      <div class="avail-dot"></div>
+      Accepting Applications
+    </div>
+  </div>
+
+  <!-- CONTACT -->
+  <div class="contact">
+    <div class="contact-left">
+      <p class="contact-kicker">Leasing Contact</p>
+      <p class="contact-name">Sarah Levy</p>
+      <p class="contact-title-text">Levy Legacy Group.</p>
+    </div>
+    <div class="contact-details">
+      <div class="contact-detail">
+        <p class="detail-label">Phone</p>
+        <p class="detail-value">(212) 555-0148</p>
+      </div>
+      <div class="contact-detail">
+        <p class="detail-label">Email</p>
+        <p class="detail-value">leasing@levylegacygroup.com</p>
+      </div>
+      <div class="contact-detail">
+        <p class="detail-label">Website</p>
+        <p class="detail-value">levylegacygroup.com</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <p class="logo" style="font-size:12px;"><span class="logo-levy">Levy</span><span class="logo-rest"> Legacy Group.</span></p>
+    <p class="footer-note">Equal Housing Opportunity &nbsp;·&nbsp; Licensed Real Estate Broker &nbsp;·&nbsp; New York State &nbsp;·&nbsp; All information subject to change without notice.</p>
+  </footer>
+
+</div>
+</body>
+</html>

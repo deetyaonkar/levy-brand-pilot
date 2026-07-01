@@ -18,6 +18,8 @@
 
 **Text on dark:** White only. Never use off-white, cream, or light gray as the primary text color on dark navy — white provides the contrast the brand requires.
 
+**Background usage** — Dark navy (`#01133D`) should cover roughly 25% of a document or deck, reserved for high-impact moments: cover pages, section dividers, hero slides, and full-bleed feature pages. Light backgrounds (`#F9F7F3` or white) should carry the remaining 75%, especially for long content blocks, small body text, and dense information — readability is the priority. Never use a dark background for text-heavy pages or small type. The 75/25 split is a guideline; when in doubt, default to the lighter background.
+
 **Prohibited:** Blurple (blue-purple) backgrounds are not part of the palette. Blue 400 `#4C4DC3` is a secondary color for accents and UI elements — it must never be used as a large background. If a shade reads as purple or violet for a background, it is wrong. Stay in the navy-to-black range for dark backgrounds.
 
 ---

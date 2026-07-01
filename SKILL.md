@@ -20,6 +20,17 @@
 
 **Background usage** — Dark navy (`#01133D`) should cover roughly 25% of a document or deck, reserved for high-impact moments: cover pages, section dividers, hero slides, and full-bleed feature pages. Light backgrounds (`#F9F7F3` or white) should carry the remaining 75%, especially for long content blocks, small body text, and dense information — readability is the priority. Never use a dark background for text-heavy pages or small type. The 75/25 split is a guideline; when in doubt, default to the lighter background.
 
+**Accessibility — WCAG AA contrast (required)** — All text must meet WCAG AA minimum contrast ratios:
+
+- Normal text (under 18pt / under 14pt bold): minimum **4.5:1** against its background
+- Large text (18pt+ or 14pt+ bold): minimum **3:1** against its background
+
+Brand green (`#01FFB7`) **must never be used as text color on light or cream backgrounds** — it fails AA contrast at any size. Green is an accent/highlight color only: use it for decorative elements, underlines, icons, CTAs, and gradient/motion elements. Never use it as body or heading text on light surfaces.
+
+On dark navy (`#01133D`): use white for all text — confirmed passing. Green may be used sparingly for single words or short labels (e.g. "Levy" in the logo lockup) but not for body copy.
+
+When generating any layout, verify text contrast before finalizing. If a combination fails AA, default to white (on dark backgrounds) or navy `#01133D` (on light backgrounds).
+
 **Prohibited:** Blurple (blue-purple) backgrounds are not part of the palette. Blue 400 `#4C4DC3` is a secondary color for accents and UI elements — it must never be used as a large background. If a shade reads as purple or violet for a background, it is wrong. Stay in the navy-to-black range for dark backgrounds.
 
 ---
